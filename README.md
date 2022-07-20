@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# **FRONTEND CODING CHALLENGE**
+Basic Spotify clone challenge. The service will be responsible for API response and loading state handling.
+# **Pre-requisites**
+- Clone the base code from GitHub link
+- Add these environment variables to “.env” file in root directory to use Spotify APIs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+`	`○	REACT\_APP\_SPOTIFY\_CLIENT\_ID
 
-## Available Scripts
+`	`○	REACT\_APP\_SPOTIFY\_CLIENT\_SECRET
 
-In the project directory, you can run:
+`	`○	You can look at [Spotify API Documentation](https://developer.spotify.com/documentation/)
+# **Requirements**
+- Display “Released This Week” songs
 
-### `npm start`
+`            `With using *new-releases* API path
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Display “Featured Playlists”
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`            `With using *featured-playlists* API path
 
-### `npm test`
+- Display “Browse genres”
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`            `With using *categories* API path
+# **Notes**
+- Candidates can clone base code from GitHub repository.
 
-### `npm run build`
+`	`○	[Spootify Coding Challenge](https://github.com/bis-cozum/frontend-coding-challenge)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- We expect that all *#TODO* marks in the application should be completed by the candidate.
+- It is expected that the UI/UX and responsive designs of the "Released This Week", "Featured Playlists", "Browse genres"  blocks are made in accordance with the general design of the candidate. 
+# **Rules**
+- React and TypeScript is mandatory.
+- Sass or Scss is mandatory.
+- Dockerizing the app is a plus.
+- Documentation/comment in the code is a plus.
+- Extra UI components and API requests are optional.
