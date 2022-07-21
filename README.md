@@ -24,7 +24,6 @@ Basic Spotify clone challenge. The service will be responsible for API response 
 # **Notes**
 - Candidates can clone base code from GitHub repository.
 
-`	`○	[Spootify Coding Challenge](https://github.com/bis-cozum/frontend-coding-challenge)
 
 - We expect that all *#TODO* marks in the application should be completed by the candidate.
 - It is expected that the UI/UX and responsive designs of the "Released This Week", "Featured Playlists", "Browse genres"  blocks are made in accordance with the general design of the candidate. 
