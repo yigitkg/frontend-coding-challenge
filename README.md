@@ -1,5 +1,7 @@
 # **FRONTEND CODING CHALLENGE**
 
+SpotiView is a web application that utilizes the Spotify API to display recently released songs, featured playlists, and browse different music genres.
+
 Basic Spotify clone challenge. The service will be responsible for API response and loading state handling.
 
 # **Pre-requisites**
