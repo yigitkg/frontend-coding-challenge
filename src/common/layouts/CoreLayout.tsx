@@ -1,7 +1,7 @@
-import React from 'react';
-import Header from '../components/Header';
-import SideBar from '../components/SideBar';
-import Player from '../components/Player';
+import React from "react";
+import Header from "../components/Header";
+import SideBar from "../components/SideBar";
+import Player from "../components/Player";
 
 class CoreLayout extends React.Component {
   render = () => (
@@ -9,9 +9,7 @@ class CoreLayout extends React.Component {
       <SideBar />
       <div className="main__content">
         <Header />
-        <div className="main__content__child">
-          {this.props.children}
-        </div>
+        <div className="main__content__child">{this.props.children}</div>
       </div>
       <Player />
     </div>

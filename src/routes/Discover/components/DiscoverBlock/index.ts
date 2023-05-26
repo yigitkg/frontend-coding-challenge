@@ -1,1 +1,1 @@
-export { default } from './components/DiscoverBlock';
+export { default } from "./components/DiscoverBlock";

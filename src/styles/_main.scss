@@ -1,6 +1,6 @@
-@import '~animate.css/animate.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap');
-@import './vars';
+@import "~animate.css/animate.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap");
+@import "./vars";
 
 * {
   box-sizing: border-box;
@@ -12,12 +12,12 @@ h1,
 h2,
 h3,
 button {
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 body {
   margin: 0;
-  background: #F9F8FF;
+  background: #f9f8ff;
 }
 
 html,
