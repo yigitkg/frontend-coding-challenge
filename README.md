@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # **FRONTEND CODING CHALLENGE**
 
 Basic Spotify clone challenge. The service will be responsible for API response and loading state handling.
@@ -42,6 +41,3 @@ Basic Spotify clone challenge. The service will be responsible for API response 
 - Dockerizing the app is a plus.
 - Documentation/comment in the code is a plus.
 - Extra UI components and API requests are optional.
-=======
-# frontend-coding-challenge
->>>>>>> 4b5578d2bfe759812d0c475956f2e2b544ccb449
