@@ -7,9 +7,24 @@ import "../styles/_discover.scss";
 interface IDiscoverProps {}
 
 interface IDiscoverState {
-  newReleases: Array<any>;
-  playlists: Array<any>;
-  categories: Array<any>;
+  newReleases: Array<Release>;
+  playlists: Array<Playlist>;
+  categories: Array<Category>;
+}
+
+interface Release {
+  title: string;
+  artist: string;
+}
+
+interface Playlist {
+  name: string;
+  songs: Array<string>;
+}
+
+interface Category {
+  name: string;
+  description: string;
 }
 
 export default class Discover extends Component<

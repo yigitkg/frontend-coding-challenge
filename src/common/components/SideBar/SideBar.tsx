@@ -11,13 +11,11 @@ import {
 import { ReactComponent as Avatar } from "../../../assets/images/avatar.svg";
 import "./_sidebar.scss";
 
-//TODO: Fix types here
-
 const renderSideBarOption = (
-  link: any,
+  link: string,
   icon: any,
-  text: any,
-  { selected }: any = {}
+  text: string,
+  { selected }: { selected?: boolean } = {}
 ) => {
   return (
     <div

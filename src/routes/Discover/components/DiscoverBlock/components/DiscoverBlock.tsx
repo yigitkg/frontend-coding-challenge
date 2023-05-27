@@ -7,31 +7,39 @@ import {
 import DiscoverItem from "./DiscoverItem";
 import "../styles/_discover-block.scss";
 
-//TODO: Fix types here
-
-const scrollContainer = (id: any, { isNegative }: any = {}) => {
+const scrollContainer = (
+  id: string,
+  options: { isNegative?: boolean } = {}
+) => {
   return () => {
-    const scrollableContainer: any = document.getElementById(id);
-    const amount = isNegative
-      ? -scrollableContainer.offsetWidth
-      : scrollableContainer.offsetWidth;
+    const scrollableContainer: HTMLElement | null = document.getElementById(id);
+    if (scrollableContainer) {
+      const amount = options.isNegative
+        ? -scrollableContainer.offsetWidth
+        : scrollableContainer.offsetWidth;
 
-    scrollableContainer.scrollLeft = scrollableContainer.scrollLeft + amount;
+      scrollableContainer.scrollLeft = scrollableContainer.scrollLeft + amount;
+    }
   };
 };
 
 interface IDiscoverBlockProps {
-  text: any;
-  id: any;
-  data: any;
-  imagesKey: any;
+  text: string;
+  id: string;
+  data: Array<DataItem>;
+  imagesKey: string;
+}
+
+interface DataItem {
+  [key: string]: any;
 }
 
 export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> {
   static defaultProps = {
     imagesKey: "images",
   };
-  render = () => {
+
+  render() {
     const { text, id, data, imagesKey } = this.props;
     return (
       <div className="discover-block">
@@ -52,11 +60,11 @@ export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> 
           ) : null}
         </div>
         <div className="discover-block__row" id={id}>
-          {data.map(({ [imagesKey]: images, name }: any) => (
+          {data.map(({ [imagesKey]: images, name }: DataItem) => (
             <DiscoverItem key={name} images={images} name={name} />
           ))}
         </div>
       </div>
     );
-  };
+  }
 }
