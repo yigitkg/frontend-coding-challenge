@@ -53,7 +53,10 @@ const Discover: React.FC<IDiscoverProps> = () => {
     // Fetch access token from Spotify API
     fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((response) => response.json())
-      .then((data) => setAccessToken(data.access_token));
+      .then((data) => {
+        setAccessToken(data.access_token);
+        console.log("data.access_token: ", data.access_token);
+      });
   }, []);
 
   // Fetch new releases, featured playlists, and categories on access token update

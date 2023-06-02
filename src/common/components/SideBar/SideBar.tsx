@@ -9,11 +9,15 @@ import {
   faStream,
 } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as Avatar } from "../../../assets/images/avatar.svg";
+import { useDispatch } from "react-redux";
+import { setSearchTerm } from "../../redux/actions/searchActions";
 import "./_sidebar.scss";
 
 const SideBar: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<string>("/");
   const [searchInput, setSearchInput] = useState<string>("");
+
+  const dispatch = useDispatch();
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -26,7 +30,7 @@ const SideBar: React.FC = () => {
   };
 
   const handleSearch = () => {
-    // Perform the API call with the searchInput value
+    dispatch(setSearchTerm(searchInput));
     console.log("Performing search for:", searchInput);
   };
 
