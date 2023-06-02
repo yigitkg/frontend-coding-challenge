@@ -95,4 +95,26 @@
       border-radius: 50%;
     }
   }
+
+  .sidebar__search {
+    background: linear-gradient(to right, #7974dd, transparent 95%);
+
+    input,
+    button {
+      margin-bottom: 0.25rem;
+      padding: 0.5rem;
+      height: 2rem;
+      border-radius: 8px;
+      background-color: #00cd00;
+      border: none;
+      outline: none;
+      &::placeholder {
+        color: rgb(56, 56, 56);
+      }
+    }
+    button:active {
+      background-color: #006100; /* Replace "your-color" with your desired color value */
+      transition: background-color 0.25s;
+    }
+  }
 }

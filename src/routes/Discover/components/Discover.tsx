@@ -24,14 +24,20 @@ interface Category {
   name: string;
   description: string;
 }
-
+/**
+ * Discover component that fetches new releases, featured playlists, and categories from Spotify API
+ * @returns React functional component
+ */
 const Discover: React.FC<IDiscoverProps> = () => {
+  // State hooks to store fetched data and access token
   const [newReleases, setNewReleases] = useState<Array<Release>>([]);
   const [playlists, setPlaylists] = useState<Array<Playlist>>([]);
   const [categories, setCategories] = useState<Array<Category>>([]);
   const [accessToken, setAccessToken] = useState<string>("");
 
+  // Fetch access token on component mount
   useEffect(() => {
+    // Request body for Spotify API authentication
     let authParameters = {
       method: "POST",
       headers: {
@@ -44,12 +50,18 @@ const Discover: React.FC<IDiscoverProps> = () => {
         process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
     };
 
+    // Fetch access token from Spotify API
     fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((response) => response.json())
       .then((data) => setAccessToken(data.access_token));
   }, []);
 
+  // Fetch new releases, featured playlists, and categories on access token update
   useEffect(() => {
+    /**
+     * Fetch new releases from Spotify API
+     * @param token Access token for Spotify API authentication
+     */
     const fetchNewReleases = async (token: string) => {
       try {
         const response = await fetch(
@@ -73,6 +85,10 @@ const Discover: React.FC<IDiscoverProps> = () => {
       }
     };
 
+    /**
+     * Fetch featured playlists from Spotify API
+     * @param token Access token for Spotify API authentication
+     */
     const fetchFeaturedPlaylists = async (token: string) => {
       try {
         const response = await fetch(
@@ -96,6 +112,10 @@ const Discover: React.FC<IDiscoverProps> = () => {
       }
     };
 
+    /**
+     * Fetch categories from Spotify API
+     * @param token Access token for Spotify API authentication
+     */
     const fetchCategories = async (token: string) => {
       try {
         const response = await fetch(
@@ -119,6 +139,7 @@ const Discover: React.FC<IDiscoverProps> = () => {
       }
     };
 
+    // Fetch data if access token is available
     if (accessToken) {
       fetchNewReleases(accessToken);
       fetchFeaturedPlaylists(accessToken);
