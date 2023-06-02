@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { SearchState } from "../../../common/redux/types/searchTypes";
+import { setSearchTerm } from "../../../common/redux/actions/searchActions";
 import DiscoverBlock from "./DiscoverBlock/components/DiscoverBlock";
 import "../styles/_discover.scss";
 
-interface IDiscoverProps {}
+interface IDiscoverProps {
+  searchInput: string;
+  setSearchTerm: (term: string) => void;
+  // Add other relevant props here
+}
 
 interface IDiscoverState {
   newReleases: Array<Release>;
   playlists: Array<Playlist>;
   categories: Array<Category>;
+  discography: Array<Discography>;
 }
 
 interface Release {
@@ -24,16 +32,20 @@ interface Category {
   name: string;
   description: string;
 }
-/**
- * Discover component that fetches new releases, featured playlists, and categories from Spotify API
- * @returns React functional component
- */
-const Discover: React.FC<IDiscoverProps> = () => {
+
+interface Discography {
+  name: string;
+  songs: Array<string>;
+}
+
+const Discover: React.FC<IDiscoverProps> = ({ searchInput, setSearchTerm }) => {
   // State hooks to store fetched data and access token
   const [newReleases, setNewReleases] = useState<Array<Release>>([]);
   const [playlists, setPlaylists] = useState<Array<Playlist>>([]);
   const [categories, setCategories] = useState<Array<Category>>([]);
+  const [discography, setDiscography] = useState<Array<Discography>>([]);
   const [accessToken, setAccessToken] = useState<string>("");
+  const [searchKey, setSearchKey] = useState<string>("");
 
   // Fetch access token on component mount
   useEffect(() => {
@@ -110,6 +122,7 @@ const Discover: React.FC<IDiscoverProps> = () => {
         const data = await response.json();
 
         setPlaylists(data.playlists.items);
+        console.log("playlists", data.playlists.items);
       } catch (error) {
         console.error("Error fetching featured playlists:", error);
       }
@@ -137,6 +150,7 @@ const Discover: React.FC<IDiscoverProps> = () => {
         const data = await response.json();
 
         setCategories(data.categories.items);
+        console.log("categories", data.categories.items);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -149,6 +163,48 @@ const Discover: React.FC<IDiscoverProps> = () => {
       fetchCategories(accessToken);
     }
   }, [accessToken]);
+
+  /**
+   * This function is responsible for fetching artist data from the Spotify API.
+   * It takes no parameters and returns nothing.
+   */
+  useEffect(() => {
+    const fetchArtistData = async (token: string) => {
+      console.log("searchInput", searchInput);
+      if (searchInput !== searchKey && searchInput.length > 0) {
+        setSearchKey(searchInput);
+
+        try {
+          const artistParameters = {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          };
+
+          const artistResponse = await fetch(
+            `https://api.spotify.com/v1/search?q=${searchInput}&type=artist`,
+            artistParameters
+          );
+
+          if (!artistResponse.ok) {
+            throw new Error("Error fetching artist data");
+          }
+
+          const data = await artistResponse.json();
+          console.log("artistData", data.artists);
+
+          setDiscography(data.artists);
+          // Process artist data here
+        } catch (error) {
+          console.error("Error fetching artist data:", error);
+        }
+      }
+    };
+    if (accessToken && searchInput.length > 0) {
+      fetchArtistData(accessToken);
+    }
+  }, [searchInput, accessToken]);
 
   return (
     <div className="discover">
@@ -164,8 +220,24 @@ const Discover: React.FC<IDiscoverProps> = () => {
         data={categories}
         imagesKey="icons"
       />
+      {searchKey && accessToken && (
+        <DiscoverBlock
+          text="SEARCH RESULTS"
+          id="search"
+          data={discography}
+          imagesKey="icons"
+        />
+      )}
     </div>
   );
 };
 
-export default Discover;
+const mapStateToProps = (state: SearchState) => ({
+  searchInput: state.searchTerm,
+});
+
+const mapDispatchToProps = {
+  setSearchTerm,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Discover);
