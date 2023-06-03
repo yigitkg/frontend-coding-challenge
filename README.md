@@ -51,7 +51,7 @@ Basic Spotify clone challenge. The service will be responsible for API response 
 
 \`\`\`bash
 git clone https://github.com/yigitkg/frontend-coding-challenge.git
-cd SpotiView
+cd frontend-coding-challenge
 \`\`\`
 
 Ensure you have Docker installed:
