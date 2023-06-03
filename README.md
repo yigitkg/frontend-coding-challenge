@@ -43,3 +43,28 @@ Basic Spotify clone challenge. The service will be responsible for API response 
 - Dockerizing the app is a plus.
 - Documentation/comment in the code is a plus.
 - Extra UI components and API requests are optional.
+
+
+## Prerequisites to Dockerize the App
+
+Ensure you have Docker installed:
+* [Get Docker](https://docs.docker.com/get-docker/)
+
+## Build the Docker image
+
+Run:
+
+  docker build -t spotiview .
+
+This command builds the Docker image and tags it as "spotiview".
+
+## Run the Docker container
+
+Run:
+
+  docker run -p 8080:80 spotiview
+  
+This command starts the Docker container and maps port 8080 of your local machine to port 80 of the Docker container.
+
+You can now view the application in your web browser by visiting http://localhost:8080.  
+  
