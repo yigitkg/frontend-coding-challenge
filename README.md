@@ -50,7 +50,7 @@ Basic Spotify clone challenge. The service will be responsible for API response 
 ### Clone the repository
 
 \`\`\`bash
-git clone https://github.com/<your-github-username>/SpotiView.git
+git clone https://github.com/yigitkg/frontend-coding-challenge.git
 cd SpotiView
 \`\`\`
 
