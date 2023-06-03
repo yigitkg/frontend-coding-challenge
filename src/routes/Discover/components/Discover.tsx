@@ -8,7 +8,6 @@ import "../styles/_discover.scss";
 interface IDiscoverProps {
   searchInput: string;
   setSearchTerm: (term: string) => void;
-  // Add other relevant props here
 }
 
 interface IDiscoverState {
@@ -74,10 +73,11 @@ const Discover: React.FC<IDiscoverProps> = ({ searchInput, setSearchTerm }) => {
   // Fetch new releases, featured playlists, and categories on access token update
   useEffect(() => {
     /**
-     * Fetch new releases from Spotify API
+     * Fetches new releases from the Spotify API
      * @param token Access token for Spotify API authentication
+     * @returns {Promise<void>} Promise that resolves when the new releases have been fetched and stored
      */
-    const fetchNewReleases = async (token: string) => {
+    const fetchNewReleases = async (token: string): Promise<void> => {
       try {
         const response = await fetch(
           "https://api.spotify.com/v1/browse/new-releases",
@@ -94,6 +94,7 @@ const Discover: React.FC<IDiscoverProps> = ({ searchInput, setSearchTerm }) => {
 
         const data = await response.json();
 
+        // Replace with actual code to store new releases
         setNewReleases(data.albums.items);
       } catch (error) {
         console.error("Error fetching new releases:", error);
@@ -101,30 +102,31 @@ const Discover: React.FC<IDiscoverProps> = ({ searchInput, setSearchTerm }) => {
     };
 
     /**
-     * Fetch featured playlists from Spotify API
+     * Fetches featured playlists from Spotify API
      * @param token Access token for Spotify API authentication
      */
     const fetchFeaturedPlaylists = async (token: string) => {
       try {
+        // Send a GET request to Spotify API to fetch featured playlists
         const response = await fetch(
           "https://api.spotify.com/v1/browse/featured-playlists",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`, // Attach access token to request headers
             },
           }
         );
 
         if (!response.ok) {
-          throw new Error("Error fetching featured playlists");
+          throw new Error("Error fetching featured playlists"); // Throw an error if response status is not ok
         }
 
-        const data = await response.json();
+        const data = await response.json(); // Parse response data as JSON
 
-        setPlaylists(data.playlists.items);
-        console.log("playlists", data.playlists.items);
+        setPlaylists(data.playlists.items); // Update playlists state with fetched playlists
+        console.log("playlists", data.playlists.items); // Log fetched playlists to console
       } catch (error) {
-        console.error("Error fetching featured playlists:", error);
+        console.error("Error fetching featured playlists:", error); // Log any errors that occur during the fetch request
       }
     };
 
@@ -149,9 +151,11 @@ const Discover: React.FC<IDiscoverProps> = ({ searchInput, setSearchTerm }) => {
 
         const data = await response.json();
 
+        // Set categories in state and log them
         setCategories(data.categories.items);
         console.log("categories", data.categories.items);
       } catch (error) {
+        // Log error if categories fetch fails
         console.error("Error fetching categories:", error);
       }
     };
@@ -169,9 +173,17 @@ const Discover: React.FC<IDiscoverProps> = ({ searchInput, setSearchTerm }) => {
    * It takes no parameters and returns nothing.
    */
   useEffect(() => {
+    /**
+     * Fetches artist data from Spotify API
+     * @param {string} token - Authorization token for Spotify API
+     */
     const fetchArtistData = async (token: string) => {
+      // Log search input
       console.log("searchInput", searchInput);
+
+      // Only perform search if searchInput has changed
       if (searchInput !== searchKey && searchInput.length > 0) {
+        // Update search key
         setSearchKey(searchInput);
 
         try {
@@ -182,25 +194,34 @@ const Discover: React.FC<IDiscoverProps> = ({ searchInput, setSearchTerm }) => {
             },
           };
 
+          // Fetch artist data from Spotify API
           const artistResponse = await fetch(
             `https://api.spotify.com/v1/search?q=${searchInput}&type=artist`,
             artistParameters
           );
 
+          // If response is not OK, throw an error
           if (!artistResponse.ok) {
             throw new Error("Error fetching artist data");
           }
 
+          // Parse response data
           const data = await artistResponse.json();
-          console.log("artistData", data.artists);
 
-          setDiscography(data.artists);
+          // Log artist data
+          console.log("artistData", data.artists.items);
+
+          // Update discography state with artist data
+          setDiscography(data.artists.items);
+
           // Process artist data here
         } catch (error) {
+          // Log error if fetch fails
           console.error("Error fetching artist data:", error);
         }
       }
     };
+
     if (accessToken && searchInput.length > 0) {
       fetchArtistData(accessToken);
     }
@@ -225,14 +246,21 @@ const Discover: React.FC<IDiscoverProps> = ({ searchInput, setSearchTerm }) => {
           text="SEARCH RESULTS"
           id="search"
           data={discography}
-          imagesKey="icons"
+          /* imagesKey="icons" */
         />
       )}
     </div>
   );
 };
 
+/**
+ * Maps the state to props for the Search component.
+ *
+ * @param state The current state of the application.
+ * @returns An object containing the searchInput prop.
+ */
 const mapStateToProps = (state: SearchState) => ({
+  // The searchInput prop is derived from the searchTerm slice of the state.
   searchInput: state.searchTerm,
 });
 

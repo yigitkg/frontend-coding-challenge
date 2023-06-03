@@ -39,13 +39,21 @@ export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> 
     imagesKey: "images",
   };
 
+  /**
+   * This function renders a DiscoverBlock and its items.
+   * @returns {JSX.Element} Returns the JSX for the DiscoverBlock.
+   */
   render() {
+    // Extracts the necessary props from this.props.
     const { text, id, data, imagesKey } = this.props;
+
+    // Returns the JSX for the DiscoverBlock.
     return (
       <div className="discover-block">
         <div className="discover-block__header">
           <h2>{text}</h2>
           <span />
+          {/* Renders the left and right arrow icons if there is data available. */}
           {data.length ? (
             <div className="animate__animated animate__fadeIn">
               <FontAwesomeIcon
@@ -59,10 +67,17 @@ export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> 
             </div>
           ) : null}
         </div>
+        {/* Renders the DiscoverItem components. */}
         <div className="discover-block__row" id={id}>
-          {data.map(({ [imagesKey]: images, name }: DataItem) => (
-            <DiscoverItem key={name} images={images} name={name} />
-          ))}
+          {data.map(
+            ({ [imagesKey]: images, name }: DataItem, index: number) => (
+              <DiscoverItem
+                key={`${name}-${index}`}
+                images={images}
+                name={name}
+              />
+            )
+          )}
         </div>
       </div>
     );

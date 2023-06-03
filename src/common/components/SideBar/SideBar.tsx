@@ -34,6 +34,15 @@ const SideBar: React.FC = () => {
     console.log("Performing search for:", searchInput);
   };
 
+  /**
+   * Renders a side bar option.
+   *
+   * @param link The link to navigate to when the option is clicked.
+   * @param icon The icon to display for the option.
+   * @param text The text to display for the option.
+   * @param selected Whether the option is currently selected.
+   * @returns The rendered side bar option.
+   */
   const renderSideBarOption = (
     link: string,
     icon: any,
