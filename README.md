@@ -38,13 +38,6 @@ Basic Spotify clone challenge. The service will be responsible for API response 
 
 Users can search for their favorite artists
 
-# **Notes**
-
-- Candidates can clone base code from GitHub repository.
-
-- We expect that all _#TODO_ marks in the application should be completed by the candidate.
-- It is expected that the UI/UX and responsive designs of the "Released This Week", "Featured Playlists", "Browse genres" blocks are made in accordance with the general design of the candidate.
-
 # **Rules**
 
 - React and TypeScript is mandatory.
