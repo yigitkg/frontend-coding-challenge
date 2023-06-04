@@ -29,6 +29,15 @@ Basic Spotify clone challenge. The service will be responsible for API response 
 
 `            `With using _categories_ API path
 
+
+## Extra Feature
+
+- Display “Search Artist”
+
+`            `With using _artist_ API path
+
+Users can search for their favorite artists
+
 # **Notes**
 
 - Candidates can clone base code from GitHub repository.
